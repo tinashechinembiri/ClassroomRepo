@@ -1,6 +1,7 @@
 package com.classroom.business;
 
 import javax.inject.Inject;
+import javax.ws.rs.PathParam;
 
 import com.qa.classroom.persistance.Classroom;
 import com.qa.classroom.transaction.ClassroomReposity;
@@ -22,7 +23,7 @@ public class Business implements BussinessReposity {
 	{
 		return class_room.ClassroomCreate(account_details); 
 	}
-	public String classroomUpdated (Classroom account_details, Long id )
+	public String classroomUpdated (String account_details, Long id )
 	{
 		return class_room.classroomUpdated(account_details, id); 
 	}
