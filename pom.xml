@@ -5,7 +5,7 @@
   <groupId>com.qa.classroom</groupId>
   <artifactId>ClassroomExecrise</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>ClassroomExecrise</name>
   <url>http://maven.apache.org</url>
