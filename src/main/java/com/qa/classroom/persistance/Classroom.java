@@ -7,16 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Classroom {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Classrooum_id")
 	private Long id ; 
 	@Column(length =100)
 	private String trainer ; 
 	
-	@OneToMany(targetEntity = Trainee.class)
+	@OneToMany
+	@JoinColumn(name = "check_id", referencedColumnName="Classrooum_id")
 	private List <Trainee> trainess;
 	
 
