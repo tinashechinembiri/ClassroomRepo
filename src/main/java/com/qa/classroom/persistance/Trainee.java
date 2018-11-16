@@ -2,21 +2,22 @@ package com.qa.classroom.persistance;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 
 @Entity 
 
 public class Trainee {
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Traineeid; 
 	
 	@Column(length = 100)
 	private String Trainee_name;
 	
-	@Column (name= "check_id")
-	private Long class_id; 
+	
 
 	public long getTraineeid() {
 		return Traineeid;

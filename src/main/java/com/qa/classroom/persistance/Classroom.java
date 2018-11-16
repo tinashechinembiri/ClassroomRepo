@@ -2,15 +2,19 @@ package com.qa.classroom.persistance;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
 
+
 @Entity
+
 public class Classroom {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Classrooum_id")
@@ -18,8 +22,8 @@ public class Classroom {
 	@Column(length =100)
 	private String trainer ; 
 	
-	@OneToMany
-	@JoinColumn(name = "check_id", referencedColumnName="Classrooum_id")
+	@OneToMany(targetEntity = Trainee.class , fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+
 	private List <Trainee> trainess;
 	
 

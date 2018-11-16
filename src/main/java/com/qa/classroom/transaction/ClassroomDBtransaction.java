@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import com.classroom.util.JSONUtil;
 import com.qa.classroom.persistance.Classroom;
 
+
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
@@ -28,7 +29,7 @@ public class ClassroomDBtransaction implements ClassroomReposity {
 	}
 	public String findalldata()
 	{
-		TypedQuery<Classroom> query = manager.createQuery("SELECT a From Classroom ", Classroom.class); 
+		TypedQuery<Classroom> query = manager.createQuery("SELECT a FROM Classroom a ", Classroom.class); 
 		return util.getJSONForObject(query.getResultList()); 
 	}
 	
@@ -40,13 +41,18 @@ public class ClassroomDBtransaction implements ClassroomReposity {
 		return account_details;
 	}
 	@Transactional(REQUIRED)
-	public String classroomUpdated (Classroom account_details, Long id )
+	public String classroomUpdated (String account_details, Long id )
 	{
-		Classroom a = findmemebers(id ); 
-		a.setTrainer(account_details.getTrainer());
-		a.setTrainess(a.getTrainess());
-		manager.merge(a); 
-		return "{\\\"message\\\":}\\\"succesfully added\\\"";
+		Classroom updateaccount  = util.getObjectForJSON(account_details, Classroom.class); 
+		Classroom a = findmemebers(id);
+		
+		if (account_details !=null)
+		{
+			a = updateaccount; 
+			manager.merge(a);
+		}
+		
+		return account_details ; 
 		
 	}
 	@Transactional(REQUIRED)
